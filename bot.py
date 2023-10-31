@@ -20,7 +20,7 @@ def start(message):
     """
     try:
         # Start bot introduction
-        start_message = "Hello! Ask me anything about life in Singapore, or if you need help!"
+        start_message = "Hello! Ask me anything about life in Singapore, or if you need help! Before we get started, we'd like to share something important with you. Your privacy matters to us! As you interact with this chatbot, you might share some personal information to help us better understand and address your health benefit queries. We want you to know that your data is protected under Singapore's Personal Data Protection Act (PDPA)."
         bot.send_message(message.chat.id, start_message)
 
     except Exception as e:
