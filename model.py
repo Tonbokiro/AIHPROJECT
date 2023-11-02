@@ -81,19 +81,19 @@ def getResponse(question: str) -> str:
 
 # Adjust the template based on detected language
     if lang == 'bn':  # 'bn' is the code for Bangla
-        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\n I hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
+        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\nI hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
         {context}
         Question: {question}
         Answer in Bangla:"""
 
     elif lang == 'ta':  # Tamil
-        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\n I hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
+        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\nI hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
         {context}
         Question: {question}
         Answer in Tamil:"""
 
     else:  # default to English
-        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\n I hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
+        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\nI hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
         {context}
         Question: {question}
         Helpful Answer:"""

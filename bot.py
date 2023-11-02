@@ -32,7 +32,7 @@ def start(message):
 def send_text(message):
     bot.send_chat_action(message.chat.id, 'typing')  # Show 'typing...' action
     response = model.getResponse(message.text)
-    bot.send_message(message.chat.id, response)
+    bot.send_message(message.chat.id, response, parse_mode='Markdown')
 
 def main():
     """Runs the Telegram Bot"""
