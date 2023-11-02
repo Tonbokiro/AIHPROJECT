@@ -20,7 +20,7 @@ def start(message):
     """
     try:
         # Start bot introduction
-        start_message = "Hello! Ask me anything about life in Singapore, or if you need help! Before we get started, we'd like to share something important with you. Your privacy matters to us! As you interact with this chatbot, you might share some personal information to help us better understand and address your health benefit queries. We want you to know that your data is protected under Singapore's Personal Data Protection Act (PDPA)."
+        start_message = "Hello! Feel free to ask me any questions about a migrant worker's healthcare in Singapore. Before we begin, we want to emphasize the importance of your privacy. \n\n We value your privacy! While interacting with this chatbot, you agree to our collection, use and/or disclosure of your personal data to the extent necessary to process your question and provide you with an answer. Rest assured, your data is safeguarded under the provisions of Singapore's Personal Data Protection Act (PDPA)."
         bot.send_message(message.chat.id, start_message)
 
     except Exception as e:
@@ -30,6 +30,7 @@ def start(message):
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
+    bot.send_chat_action(message.chat.id, 'typing')  # Show 'typing...' action
     response = model.getResponse(message.text)
     bot.send_message(message.chat.id, response)
 

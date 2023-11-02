@@ -11,6 +11,7 @@ from langchain.vectorstores import Chroma
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import ConversationalRetrievalChain
+from langdetect import detect
 
 def getResponse(question: str) -> str:
     """
@@ -65,18 +66,38 @@ def getResponse(question: str) -> str:
     os.environ["LANGCHAIN_PROJECT"] = "Chatbot"
 
     # Define parameters for retrival
-    retriever=vectordb.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": .5, "k": 5})
+    retriever=vectordb.as_retriever(search_type="mmr", search_kwargs={"k": 5})
 
     # Define llm model
 
     llm_name = "gpt-3.5-turbo-16k"
     llm = ChatOpenAI(model_name=llm_name, temperature=0)
-    # Define template prompt
-    template = """You are a friendly chatbot that helps sad university students cope with their immense stress. 
-    Use the following pieces of context to answer the question at the end.
-    {context}
-    Question: {question}
-    Helpful Answer:"""
+
+     # Detect language of the question
+    try:
+        lang = detect(question)
+    except:
+        lang = 'en'  # default to English if detection fails
+
+# Adjust the template based on detected language
+    if lang == 'bn':  # 'bn' is the code for Bangla
+        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\n I hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
+        {context}
+        Question: {question}
+        Answer in Bangla:"""
+
+    elif lang == 'ta':  # Tamil
+        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\n I hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
+        {context}
+        Question: {question}
+        Answer in Tamil:"""
+
+    else:  # default to English
+        template = """You are a chatbot helping new staff and volunteers to know more about the migrant workers’ medical, dental and mental coverage in Singapore and also to help bridge the gap between new staff and volunteers and migrant workers. Always say \n\n I hope this answers your question and if our previous response did not address your question adequately, please feel free to reach out to HealthServe at +65 3157 4450 (general enquiries) or email them info@healthserve.org.sg at the end of the answer. Use the following piece of context to answer the question at the end.
+        {context}
+        Question: {question}
+        Helpful Answer:"""
+
 
     your_prompt = PromptTemplate.from_template(template)
 
